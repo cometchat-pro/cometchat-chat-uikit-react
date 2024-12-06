@@ -1,10 +1,12 @@
 import { CometChatMessageTemplate, CometChatTheme, MessageBubbleAlignment } from "@cometchat/uikit-resources";
+import { CallingConfiguration } from "@cometchat/uikit-shared";
 import { DataSource } from "../Shared/Framework/DataSource";
 import { DataSourceDecorator } from "../Shared/Framework/DataSourceDecorator";
 export declare class CallingExtensionDecorator extends DataSourceDecorator {
     theme: CometChatTheme;
     loggedInUser: CometChat.User | null;
-    constructor(dataSource: DataSource);
+    configuration?: CallingConfiguration;
+    constructor(dataSource: DataSource, configuration?: CallingConfiguration);
     addLoginListener(): void;
     getLoggedInUser(): Promise<void>;
     getAllMessageTypes(): string[];
@@ -39,7 +41,7 @@ export declare class CallingExtensionDecorator extends DataSourceDecorator {
     getSessionId(_message: CometChat.CustomMessage): any;
     getCallBubbleTitle(_message: CometChat.CustomMessage): any;
     getDirectCallMessageBubble(_message: CometChat.CustomMessage, _alignment: MessageBubbleAlignment, _theme: CometChatTheme): import("react/jsx-runtime").JSX.Element;
-    startDirectCall(sessionId: string, theme: CometChatTheme): void;
+    startDirectCall(sessionId: string, message: CometChat.CustomMessage, theme: CometChatTheme): void;
     callStatusStyle(_message: CometChat.Call, theme: CometChatTheme): {
         buttonTextFont: string;
         buttonTextColor: string | undefined;

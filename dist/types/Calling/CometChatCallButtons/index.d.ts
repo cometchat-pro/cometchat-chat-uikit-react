@@ -1,4 +1,4 @@
-import { CallButtonsStyle } from "@cometchat/uikit-shared";
+import { CallButtonsStyle, CallScreenConfiguration, OutgoingCallConfiguration } from "@cometchat/uikit-shared";
 interface ICallButtonsBaseProps {
     voiceCallIconURL?: string;
     voiceCallIconText?: string;
@@ -12,6 +12,8 @@ interface ICallButtonsBaseProps {
     onError?: (error: CometChat.CometChatException) => void;
     user?: CometChat.User | null;
     group?: CometChat.Group | null;
+    outgoingCallConfiguration?: OutgoingCallConfiguration;
+    ongoingCallConfiguration?: CallScreenConfiguration;
 }
 declare const CometChatCallButtons: (props: ICallButtonsBaseProps) => import("react/jsx-runtime").JSX.Element;
 export { CometChatCallButtons };

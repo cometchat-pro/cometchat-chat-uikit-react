@@ -64,7 +64,7 @@ export declare const DeclineButtonStyle: (incomingCallStyle: IncomingCallStyle) 
     buttonTextFont: string | undefined;
     buttonTextColor: string | undefined;
 };
-export declare const defaultOngoingCallStyle: (theme: CometChatTheme) => CallscreenStyle;
+export declare const getDefaultOngoingCallStyle: (ongoingCallStyle: any, theme: CometChatTheme) => CallscreenStyle;
 export declare const IconStyle: (incomingCallStyle: IncomingCallStyle) => {
     height: string;
     width: string;

@@ -1,5 +1,5 @@
 import { AvatarStyle, ListItemStyle } from "@cometchat/uikit-elements";
-import { IncomingCallStyle } from "@cometchat/uikit-shared";
+import { CallScreenConfiguration, IncomingCallStyle } from "@cometchat/uikit-shared";
 interface IIncomingCallProps {
     call?: any;
     disableSoundForCalls?: boolean;
@@ -7,6 +7,7 @@ interface IIncomingCallProps {
     onAccept?: Function;
     onDecline?: Function;
     acceptButtonText?: string;
+    ongoingCallConfiguration?: CallScreenConfiguration;
     declineButtonText?: string;
     subtitleView?: any;
     onError?: Function;

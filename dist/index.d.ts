@@ -5,7 +5,7 @@ import { UserMemberListType, UserPresencePlacement, CometChatLocalize, FormMessa
 export * from '@cometchat/uikit-resources';
 import { AvatarStyle, TextBubbleStyle, BaseStyle, ImageBubbleStyle, FileBubbleStyle, DocumentBubbleStyle, ConfirmDialogStyle, ListItemStyle, CallscreenStyle, BadgeStyle, ReceiptStyle, DateStyle, ChangeScopeStyle, ActionSheetStyle, MediaRecorderStyle, EmojiKeyboardStyle, BackdropStyle, CometChatEmojiKeyboard, CometChatIconButton, CometChatButton as CometChatButton$1, CometChatDate, CometChatLabel, CometChatLoader, CometChatAvatar, CometChatReceipt } from '@cometchat/uikit-elements';
 export { ActionSheetStyle, AvatarStyle, BackdropStyle, BadgeStyle, ButtonGroupStyle, CallscreenStyle, CardStyle, ChangeScopeStyle, CheckboxStyle, CometChatActionItem, CometChatActionSheet, CometChatAvatar, CometChatBackdrop, CometChatBadge, CometChatButton, CometChatButtonGroup, CometChatCallscreenWrapper, CometChatCard, CometChatChangeScope, CometChatCheckbox, CometChatConfirmDialog, CometChatContextMenu, CometChatCreateGroup, CometChatDate, CometChatDivider, CometChatDocumentBubble, CometChatDraggable, CometChatDropdown, CometChatEmoji, CometChatEmojiKeyboard, CometChatFullScreenViewer, CometChatIcon, CometChatIconButton, CometChatInput, CometChatJoinGroup, CometChatLabel, CometChatListItem, CometChatLiveReaction, CometChatLoader, CometChatMediaRecorder, CometChatMenuList, CometChatMessageInput, CometChatModal, CometChatPopover, CometChatPreview, CometChatQuickView, CometChatRadioButton, CometChatReceipt, CometChatSearchInput, CometChatSingleSelect, CometChatStatusIndicator, CometChatTextInput, ConfirmDialogStyle, ContextMenuStyle, CreateGroupStyle, DateStyle, DocumentBubbleStyle, DropdownStyle, EmojiKeyboardStyle, Emojis, FileBubbleStyle, FullScreenViewerStyle, IconStyle, ImageBubbleStyle, InputStyle, JoinGroupStyle, LabelStyle, ListItemStyle, LoaderStyle, MediaRecorderStyle, MenuListStyle, MessageInputStyle, ModalStyle, PopoverStyle, PreviewStyle, QuickViewStyle, RadioButtonStyle, ReceiptStyle, SearchInputStyle, SingleSelectStyle, TextBubbleStyle, TextInputStyle, auxiliaryButtonAlignmentEnum, layoutType } from '@cometchat/uikit-elements';
-import { UIKitSettings, CometChatSoundManager, ComposerId as ComposerId$1, FormBubbleStyle, SchedulerBubbleStyle, CardBubbleStyle, AIOptionsStyle, CometChatTextFormatter, CometChatMentionsFormatter, CometChatUrlsFormatter, BaseStyle as BaseStyle$1, ListStyle, OptionsStyle, ImageModerationStyle, LinkPreviewStyle, MessageTranslationStyle, PollsBubbleStyle, CreatePollStyle, SmartRepliesStyle, StickersStyle, CallButtonsStyle, IncomingCallStyle, CometChatUIKitCalls, OutgoingCallStyle, CallLogsStyle, OutgoingCallConfiguration, CallLogHistoryConfiguration, CallLogParticipantsConfiguration, CallLogRecordingsConfiguration, CallLogDetailsStyle, CallLogHistoryStyle, CallLogParticipantsStyle, CallLogRecordingsStyle, WithDetailsStyle, CallLogDetailsConfiguration, CallLogsConfiguration, AddMembersStyle, BannedMembersStyle, ConversationsStyle, WithMessagesStyle, MessagesConfiguration, ConversationsConfiguration, ContactsConfiguration, AddMembersConfiguration, BannedMembersConfiguration, GroupMembersConfiguration, TransferOwnershipConfiguration, DetailsStyle, GroupMembersStyle, GroupsStyle, GroupsConfiguration, CreateGroupConfiguration, JoinGroupConfiguration, MessageComposerStyle, UserMemberWrapperConfiguration, MessageHeaderStyle, MessageListStyle, MessageInformationConfiguration, ReactionsConfiguration, MessageHeaderConfiguration, MessageListConfiguration, MessageComposerConfiguration, ThreadedMessagesConfiguration, DetailsConfiguration, MessagesStyle, TransferOwnershipStyle, UsersStyle, UsersConfiguration, ContactsStyle, MessageInformationStyle, AIAssistBotConfiguration, AIConversationStarterConfiguration, AISmartRepliesConfiguration, AIConversationSummaryConfiguration, CometChatReactions } from '@cometchat/uikit-shared';
+import { UIKitSettings, CometChatSoundManager, CallingExtensionDataSource, ComposerId as ComposerId$1, FormBubbleStyle, SchedulerBubbleStyle, CardBubbleStyle, AIOptionsStyle, CometChatTextFormatter, CometChatMentionsFormatter, CometChatUrlsFormatter, BaseStyle as BaseStyle$1, ListStyle, OptionsStyle, ImageModerationStyle, LinkPreviewStyle, MessageTranslationStyle, PollsBubbleStyle, CreatePollStyle, SmartRepliesStyle, StickersStyle, CallingConfiguration, CallButtonsStyle, OutgoingCallConfiguration, CallScreenConfiguration, IncomingCallStyle, CometChatUIKitCalls, OutgoingCallStyle, CallLogsStyle, CallLogHistoryConfiguration, CallLogParticipantsConfiguration, CallLogRecordingsConfiguration, CallLogDetailsStyle, CallLogHistoryStyle, CallLogParticipantsStyle, CallLogRecordingsStyle, WithDetailsStyle, CallLogDetailsConfiguration, CallLogsConfiguration, AddMembersStyle, BannedMembersStyle, ConversationsStyle, WithMessagesStyle, MessagesConfiguration, ConversationsConfiguration, ContactsConfiguration, AddMembersConfiguration, BannedMembersConfiguration, GroupMembersConfiguration, TransferOwnershipConfiguration, DetailsStyle, GroupMembersStyle, GroupsStyle, GroupsConfiguration, CreateGroupConfiguration, JoinGroupConfiguration, MessageComposerStyle, UserMemberWrapperConfiguration, MessageHeaderStyle, MessageListStyle, MessageInformationConfiguration, ReactionsConfiguration, MessageHeaderConfiguration, MessageListConfiguration, MessageComposerConfiguration, ThreadedMessagesConfiguration, DetailsConfiguration, MessagesStyle, TransferOwnershipStyle, UsersStyle, UsersConfiguration, ContactsStyle, MessageInformationStyle, AIAssistBotConfiguration, AIConversationStarterConfiguration, AISmartRepliesConfiguration, AIConversationSummaryConfiguration, CometChatReactions } from '@cometchat/uikit-shared';
 export * from '@cometchat/uikit-shared';
 import { CometChat as CometChat$1 } from '@cometchat/chat-sdk-javascript';
 import * as _lit_labs_react from '@lit-labs/react';
@@ -51,6 +51,11 @@ declare class CometChatUIKit {
     static conversationUpdateSettings: CometChat.ConversationUpdateSettings;
     static init(uiKitSettings: UIKitSettings | null): Promise<Object> | undefined;
     static defaultExtensions: ExtensionsDataSource[];
+    /**
+    * Default callingExtension included in the UI Kit.
+    * @type {CallingExtensionDataSource}
+    */
+    static defaultCallingExtension: CallingExtensionDataSource;
     static defaultAIFeatures: AIExtensionDataSource[];
     static enableCalling(): void;
     private static initiateAfterLogin;
@@ -844,7 +849,9 @@ declare class ThumbnailGenerationExtensionDecorator extends DataSourceDecorator 
     getVideoMessageBubble(videoUrl: string, message: CometChat.MediaMessage, theme: CometChatTheme, thumbnailUrl?: string, onClick?: Function, style?: BaseStyle): any;
 }
 
-declare class CallingExtension extends ExtensionsDataSource {
+declare class CallingExtension extends CallingExtensionDataSource {
+    private configuration?;
+    constructor(configuration?: CallingConfiguration);
     enable(): void;
     addExtension(): void;
     getExtensionId(): string;
@@ -853,7 +860,8 @@ declare class CallingExtension extends ExtensionsDataSource {
 declare class CallingExtensionDecorator extends DataSourceDecorator {
     theme: CometChatTheme;
     loggedInUser: CometChat.User | null;
-    constructor(dataSource: DataSource);
+    configuration?: CallingConfiguration;
+    constructor(dataSource: DataSource, configuration?: CallingConfiguration);
     addLoginListener(): void;
     getLoggedInUser(): Promise<void>;
     getAllMessageTypes(): string[];
@@ -888,7 +896,7 @@ declare class CallingExtensionDecorator extends DataSourceDecorator {
     getSessionId(_message: CometChat.CustomMessage): any;
     getCallBubbleTitle(_message: CometChat.CustomMessage): any;
     getDirectCallMessageBubble(_message: CometChat.CustomMessage, _alignment: MessageBubbleAlignment, _theme: CometChatTheme): react_jsx_runtime.JSX.Element;
-    startDirectCall(sessionId: string, theme: CometChatTheme): void;
+    startDirectCall(sessionId: string, message: CometChat.CustomMessage, theme: CometChatTheme): void;
     callStatusStyle(_message: CometChat.Call, theme: CometChatTheme): {
         buttonTextFont: string;
         buttonTextColor: string | undefined;
@@ -934,6 +942,8 @@ interface ICallButtonsBaseProps {
     onError?: (error: CometChat.CometChatException) => void;
     user?: CometChat.User | null;
     group?: CometChat.Group | null;
+    outgoingCallConfiguration?: OutgoingCallConfiguration;
+    ongoingCallConfiguration?: CallScreenConfiguration;
 }
 declare const CometChatCallButtons: (props: ICallButtonsBaseProps) => react_jsx_runtime.JSX.Element;
 
@@ -944,6 +954,7 @@ interface IIncomingCallProps {
     onAccept?: Function;
     onDecline?: Function;
     acceptButtonText?: string;
+    ongoingCallConfiguration?: CallScreenConfiguration;
     declineButtonText?: string;
     subtitleView?: any;
     onError?: Function;
