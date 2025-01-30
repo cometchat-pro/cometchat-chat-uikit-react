@@ -1,13 +1,13 @@
 {
   "name": "@cometchat/chat-uikit-react",
-  "version": "4.3.24",
+  "version": "4.3.25",
   "description": "Ready-to-use Chat UI Components for React(Javascript/Web)",
   "author": "CometChat",
   "peerDependencies": {
     "@cometchat/chat-sdk-javascript": "^4.0.10",
-    "@cometchat/uikit-elements": "^4.3.18",
-    "@cometchat/uikit-resources": "^4.3.14",
-    "@cometchat/uikit-shared": "^4.3.21"
+    "@cometchat/uikit-elements": "^4.3.19",
+    "@cometchat/uikit-resources": "^4.3.16",
+    "@cometchat/uikit-shared": "^4.3.22"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.0",
@@ -18,6 +18,7 @@
     "@rollup/plugin-commonjs": "^25.0.5",
     "@rollup/plugin-image": "^3.0.2",
     "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.1",
     "@rollup/plugin-url": "^8.0.1",
     "@types/react": "^18.2.7",
@@ -25,16 +26,15 @@
     "babel-loader": "^8.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rollup": "^3.23.0",
+    "rollup": "^3.29.5",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-sourcemaps": "^0.6.3",
-    "@rollup/plugin-terser": "^0.4.4",
     "tslib": "^2.5.2",
     "typescript": "^5.0.4",
-    "webpack": "^5.68.0",
+    "webpack": "^5.97.1",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "webpack-dev-server": "^5.2.0"
   },
   "homepage": "https://www.cometchat.com",
   "repository": "https://github.com/cometchat/cometchat-uikit-react",
